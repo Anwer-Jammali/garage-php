@@ -53,7 +53,7 @@
         Account_name VARCHAR(25) NOT NULL,
         Email VARCHAR(50) NOT NULL,
         Account_Password VARCHAR(25) NOT NULL,
-        Account_Role VARCHAR(10) NOT NULL,
+        Account_Role VARCHAR(10) NOT NULL
     )";
 
     if (mysqli_query($connexion, $create_brands) && 

@@ -1,38 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Navbar</title>
-  <link rel="stylesheet" href="navbar.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Navbar with Submit Buttons</title>
+  <link rel="stylesheet" href="navbarcss.css">
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<body>
-    <nav>
-      <div class="navbar">
-        <div class="container nav-container">
-            <input class="checkbox" type="checkbox" name="" id="" />
-            <div class="hamburger-lines">
-              <span class="line line1"></span>
-              <span class="line line2"></span>
-              <span class="line line3"></span>
-            </div>  
-          <div class="logo">
-            <h1>Navbar</h1>
-          </div>
-          <div class="menu-items">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">about</a></li>
-            <li><a href="#">blogs</a></li>
-            <li><a href="#">portfolio</a></li>
-            <li><a href="#">contact</a></li>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </body>
-<!-- partial -->
-  
+  <nav class="navbar">
+    <div class="container">
+      <form class="nav-links" action="" method="post">
+        <input type="submit" name="home" value="Home">
+        <input type="submit" name="services" value="Services">
+        <input type="submit" name="contact" value="Contact">
+        <?php
+          if (session_status() == PHP_SESSION_ACTIVE) {
+            echo "<input type='submit' name='Log out' value='log_out'>";
+            if($_SESSION['ROLE']=='Admin'){
+              echo "<input type='submit' name='dashboard' value='dashboard'>";
+            }else{
+              echo "<input type='submit' name='Acc_info' value='My Account'>";
+            }
+          } else {
+              echo "<input type='submit' name='log_in' value='Log in'>";
+          }
+        ?>
+      </form>
+      <?php
+        if(isset($_POST['log_in'])){
+          header('location:Log_in.php');
+        }
+      ?>
+    </div>
+  </nav>
 </body>
 </html>

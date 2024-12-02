@@ -48,10 +48,19 @@
         FOREIGN KEY (car_id) REFERENCES cars(id)
     )";
 
+    $create_Accounts = "CREATE TABLE IF NOT EXISTS Accounts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        Account_name VARCHAR(25) NOT NULL,
+        Email VARCHAR(50) NOT NULL,
+        Account_Password VARCHAR(25) NOT NULL,
+        Account_Role VARCHAR(10) NOT NULL,
+    )";
+
     if (mysqli_query($connexion, $create_brands) && 
         mysqli_query($connexion, $create_cars) && 
-        mysqli_query($connexion, $create_sell_contracts)) {
-        echo "Les tables 'cars', 'brands', 'sell_contracts' ont été créées avec succès.<br>";
+        mysqli_query($connexion, $create_sell_contracts) && 
+        mysqli_query($connexion, $create_Accounts)) {
+        echo "Les tables 'cars', 'brands', 'sell_contracts' , 'Accounts' ont été créées avec succès.<br>";
     } else {
         echo "<h2>Erreur de création:</h2> " . mysqli_error($connexion) . "<br>";
     }

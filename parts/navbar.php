@@ -28,6 +28,9 @@
           } else {
               echo "<input type='submit' name='log_in' value='Log in'>";
           }
+          if(isset($_POST["home"])){
+            header("location:index.php");
+          }
         ?>
       </form>
       <?php

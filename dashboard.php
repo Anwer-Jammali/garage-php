@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<!DOCTYPE html>
     <link rel="stylesheet" href="dashboard_style.css">
     <title>Admin dashboard</title>
 </head>
@@ -16,13 +12,21 @@
     $utilisateur = "root"; 
     $motdepasse = ""; 
     $nom_base = "sayarat_3amek_faouzi";
-  
+    
     $connexion = mysqli_connect($serveur, $utilisateur, $motdepasse, $nom_base);
-  
+    
     if (!$connexion) {
         die("Connexion échouée : " . mysqli_connect_error());
     }
     ?>
+        <form class="fixed-list" method="post">
+            <input type="submit" name="home" value="Home">
+        </form>
+        <?php
+            if(isset($_POST['home'])){
+                header('location:index.php');
+            }
+        ?>
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
@@ -39,11 +43,11 @@
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <?php
-                            $sql = "SELECT COUNT(Account_name) AS total_users FROM Accounts";
+                            $sql = "SELECT COUNT(Account_name) AS total_users FROM Accounts WHERE account_role='User'";
                             $res = mysqli_query($connexion, $sql);
                             if ($res) {
                                 $row = mysqli_fetch_assoc($res);
-                                $total_users = $row['total_users'] - 2; 
+                                $total_users = $row['total_users']; 
                                 if($total_users==0){
                                     echo "<span class='text'>No users for now</span><br>";    
                                 }else{
@@ -101,7 +105,7 @@
     </div>
     <?php
     // Query to fetch non-admin users
-    $sql = "SELECT acc_id, Account_name, Email FROM Accounts WHERE Account_Role != 'Admin'";
+    $sql = "SELECT id, Account_name, Email FROM Accounts WHERE Account_Role != 'Admin'";
     $result = mysqli_query($connexion, $sql);
 
     if (!$result) {
@@ -231,6 +235,7 @@
             echo "<p>No sell contracts found.</p>";
         }
     }
+    
     ?>
 </div>
 </center>

@@ -1,0 +1,62 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+
+/* Card Container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap to the next row */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Center cards in the container */
+}
+
+/* Card Styles */
+.card {
+  width: 300px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.card-price {
+  font-size: 1.2rem;
+  color: #27ae60; /* Green color for the price */
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #666;
+}

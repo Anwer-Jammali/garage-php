@@ -65,6 +65,8 @@
             //header("");
             session_start();
             $_SESSION['ROLE'] = $role;
+            $_SESSION['EMAIL'] = $Semail;
+            $_SESSION['NAME'] = $Sname;
             header('location:index.php');
         }else {
             echo "<h3 style='color:red;'>error".mysqli_error($connexion)."</h3>";
@@ -84,6 +86,7 @@
             $row = mysqli_fetch_assoc($res);
             $_SESSION["NAME"] = $row['account_name']; // Retrieve account_name
             $_SESSION["ROLE"] = $row['account_role']; // Retrieve account_role
+            $_SESSION["EMAIL"] = $lemail;
             header("location:index.php");
             
         }else{

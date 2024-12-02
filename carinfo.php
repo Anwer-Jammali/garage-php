@@ -10,12 +10,25 @@
 <body>
 <?php include 'parts/navbar.php'; ?>
 <?php
+    $serveur = "localhost"; 
+    $utilisateur = "root"; 
+    $motdepasse = ""; 
+    $nom_base = "sayarat_3amek_faouzi";
     
-    echo $_SESSION["carID"];
+    $connexion = mysqli_connect($serveur, $utilisateur, $motdepasse, $nom_base);
     
+    if (!$connexion) {
+        die("Connexion échouée : " . mysqli_connect_error());
+    }
+    
+    $sql = "SELECT c.id ,name , model , price , image FROM cars as c JOIN brands as b ON(b.id=c.brand_id) WHERE c.id ='" . $_SESSION["carID"] . "'";
+    $res = mysqli_query($connexion, $sql);
+    if ($res) {
+        $row = mysqli_fetch_assoc($res);
+        echo $row["name"] . " " . $row["model"];
+    }
+
 ?>
-<h1>
-    azaza
-</h1>
+
 </body>
 </html>

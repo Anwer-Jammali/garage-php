@@ -25,7 +25,10 @@
         header("location:carinfo.php");
     }
     if(isset($_POST["buy"])){
-
+        $data_sell_contracts = "INSERT INTO sell_contracts (car_id, buyer_name, buyer_email, sale_date, sale_price) VALUES (". $_POST["carID"] .",'". $_SESSION["NAME"] ."', '". $_SESSION["EMAIL"] ."','". date("Y-m-d")."', ". $_POST["carPRICE"] .")";
+        if (!mysqli_query($connexion, $data_sell_contracts)) {
+            echo "Erreur d'insertion dans 'sell_contracts': " . mysqli_error($connexion) . "<br>";
+        }
     }
 ?>
 <center>
@@ -50,8 +53,9 @@
                             <p class="card-price">' . htmlspecialchars($row['price']) . '</p>
                             <p class="card-description">This is a brief description of the card. It provides details about the content shown above.</p>
                             <input type="hidden" name="carID" value="'.$row["id"].'">
+                            <input type="hidden" name="carPRICE" value="'.$row["price"].'">
                             <input type="submit" value="More" name="info">
-                            <input type="submit" value="BUY!!" name="Buy">
+                            <input type="submit" value="BUY!!" name="buy">
                         </form>
                         </div>
                     </div>';

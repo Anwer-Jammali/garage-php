@@ -15,6 +15,7 @@
         <input type="text" placeholder="Enter your email" name="l_email">
         <input type="password" placeholder="Enter your password" name="l_pw">
         <input type="submit" class="button" value="Login" name="l_btn">
+        <input type="submit" class="cbutton" value="Cancel" name="cancel">
       </form>
       <div class="signup">
         <span class="signup">Don't have an account?
@@ -28,8 +29,8 @@
         <input type="text" name="s_name" placeholder="Enter your name">
         <input type="text" placeholder="Enter your email" name="s_email">
         <input type="password" placeholder="Create a password" name="s_pw">
-        <label for="admin">create account as admin<input type="checkbox" name="s_admin" value="admin" class="checkbox" style="size: 10px;"></label>
         <input type="submit" class="button" value="Signup" name="s_btn">
+        <input type="submit" class="button" value="Cancel" name="cancel">
       </form>
       <div class="signup">
         <span class="signup">Already have an account?
@@ -54,20 +55,17 @@
     $Sname=$_POST['s_name']??'';
     $Semail=$_POST['s_email']??'';
     $Spw=$_POST['s_pw']??'';
-    $admin=$_POST['admin']??'';
-    $Sbtn=$_POST['s_btn']??'';
-    if(isset($Sbtn)){
-        if(isset($admin)){
-            $role="Admin";
-        }else{
-            $role="User";
-        }
+    if(isset($_POST['s_btn'])){
+        $role="User";
         $sql="insert into Accounts (Account_name,Email,Account_Password,Account_Role) values ('$Sname','$Semail','$Spw','$role')";
         if(mysqli_query($connexion,$sql)){
             echo "signup successfull !";
             // 3adih lel dashboard or something
             //session_start();
             //header("");
+            session_start();
+            $_SESSION['ROLE'] = $role;
+            header('location:index.php');
         }else {
             echo "<h3 style='color:red;'>error".mysqli_error($connexion)."</h3>";
         }
@@ -75,18 +73,27 @@
     // traitment for login
     $lemail=$_POST['l_email']??'';
     $lpw=$_POST['l_pw']??'';
-    $lbtn=$_POST['l_btn']??'';
-    if(isset($lbtn)){
-        $sql="SELECT * from Accounts where Email='$lemail' and Account_Password='$lpw'";
+    if(isset($_POST['l_btn'])){
+        $sql="SELECT account_name , account_role from Accounts where Email='$lemail' and Account_Password='$lpw'";
         $res = mysqli_query($connexion, $sql);
         if(mysqli_num_rows($res) == 1) {
             // 3adih lel dashboard or something
             //session_start();
             //header("");
+            session_start();
+            $row = mysqli_fetch_assoc($res);
+            $_SESSION["NAME"] = $row['account_name']; // Retrieve account_name
+            $_SESSION["ROLE"] = $row['account_role']; // Retrieve account_role
+            header("location:index.php");
+            
         }else{
             echo "<div>Il n a pas un(e) utilisateur enregistrer avec ces cordonnée !</div>";
         }
         
+    }
+
+    if(isset($_POST["cancel"])){
+        header("location:index.php");
     }
   ?>
 </body>

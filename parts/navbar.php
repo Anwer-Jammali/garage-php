@@ -14,8 +14,9 @@
         <input type="submit" name="services" value="Services">
         <input type="submit" name="contact" value="Contact">
         <?php
-          if (session_status() == PHP_SESSION_ACTIVE) {
-            echo "<input type='submit' name='Log out' value='log_out'>";
+          session_start();
+          if (isset($_SESSION['ROLE'])) {
+            echo "<input type='submit' name='log_out' value='Log out'>";
             if($_SESSION['ROLE']=='Admin'){
               echo "<input type='submit' name='dashboard' value='dashboard'>";
             }else{
@@ -29,6 +30,10 @@
       <?php
         if(isset($_POST['log_in'])){
           header('location:Log_in.php');
+        }
+        if(isset($_POST["log_out"])){
+          session_destroy();
+          header("location:index.php");
         }
       ?>
     </div>

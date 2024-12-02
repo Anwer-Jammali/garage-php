@@ -19,6 +19,9 @@
             echo "<input type='submit' name='log_out' value='Log out'>";
             if($_SESSION['ROLE']=='Admin'){
               echo "<input type='submit' name='dashboard' value='dashboard'>";
+              if(isset($_POST['dashboard'])){
+                header('location:dashboard.php');
+              }
             }else{
               echo "<input type='submit' name='Acc_info' value='My Account'>";
             }

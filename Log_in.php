@@ -87,7 +87,7 @@
             header("location:index.php");
             
         }else{
-            echo "<div>Il n a pas un(e) utilisateur enregistrer avec ces cordonnée !</div>";
+            echo "<h3 style='color:red;'>Il n a pas un(e) utilisateur enregistrer avec ces cordonnée !</h3>";
         }
         
     }

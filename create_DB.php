@@ -97,6 +97,15 @@
     } else {
         echo "Erreur d'insertion dans 'sell_contracts': " . mysqli_error($connexion) . "<br>";
     }
+    $Add_Admins = "INSERT INTO Accounts (Account_name,Email,Account_Password,Account_Role) VALUES
+        ('Anwar','anwarjammeli4@gmail.com','anwar','Admin'),('Adem','adem.alshili@gmail.com','adem','Admin')";
+
+    if (mysqli_query($connexion, $Add_Admins)) {
+        echo "les admin sont inserer avec success.<br>";
+    } else {
+        echo "Erreur d'insertion des admins : " . mysqli_error($connexion) . "<br>";
+    }
+
 
     // Close the connection
     mysqli_close($connexion);

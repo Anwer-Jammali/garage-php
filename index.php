@@ -61,7 +61,7 @@
                             <input type="hidden" name="carID" value="'.$row["id"].'">
                             <input type="hidden" name="carPRICE" value="'.$row["price"].'">
                             <input type="submit" value="More" name="info" class="sub">
-                            <input type="submit" value="BUY!!" name="buy" class="subuy">
+                            <input type="submit" value="BUY!!" name="buy" class="sub">
                             </div>
                         </form>
                         </div>

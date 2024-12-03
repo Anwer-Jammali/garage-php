@@ -31,6 +31,7 @@ img {
   animation-delay: 0.5s;
   width: 80%;
   height: fit-content;
+  max-width: 1328px;
 }
 
 .content {
@@ -46,20 +47,20 @@ h1 {
   text-align: center;
   font-size: 100px;
 }
-h3{
-    font-size: large;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+h3 {
+  font-size: large;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.desc{
-    background-color: #262626;
-    border-bottom: gold 3px solid;
-    padding: 20px;
-    color: #fff;
+.desc {
+  background-color: #262626;
+  border-bottom: gold 3px solid;
+  padding: 20px;
+  color: #fff;
 }
 
 p {
   width: 400px;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 1.4;
   color: #000000;
   margin: 20px 0;
@@ -72,7 +73,7 @@ p {
   color: #fff;
   background: rgb(0, 0, 0);
   border-bottom: gold 3px solid;
-  padding: 6px 70px  6px 6px ;
+  padding: 6px 70px 6px 6px;
   margin: 1px;
   border-radius: 0 50px 0 0;
   font-size: 50px;
@@ -82,11 +83,11 @@ p {
   height: 50px;
   margin-top: 10px;
 }
-span{
-    color: green;
-    font-size: 30px;
-    text-align: center;
-    align-items: center;
+span {
+  color: green;
+  font-size: 30px;
+  text-align: center;
+  align-items: center;
 }
 .button a {
   display: block;
@@ -95,7 +96,7 @@ span{
   right: 0px;
   font-size: 20px;
   color: #111;
-  padding:20px;
+  padding: 20px;
   border: 1px solid #aaa;
   font-weight: bold;
   width: 200px;
@@ -127,12 +128,12 @@ span{
 }
 
 .button a:nth-of-type(1) {
-  border-radius:50px;
+  border-radius: 50px;
   border-right: none;
 }
 
 .button a:nth-of-type(2) {
-  border-radius:50px;
+  border-radius: 50px;
 }
 
 .cart-icon {

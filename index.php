@@ -25,9 +25,13 @@
         header("location:carinfo.php");
     }
     if(isset($_POST["buy"])){
-        $data_sell_contracts = "INSERT INTO sell_contracts (car_id, buyer_name, buyer_email, sale_date, sale_price) VALUES (". $_POST["carID"] .",'". $_SESSION["NAME"] ."', '". $_SESSION["EMAIL"] ."','". date("Y-m-d")."', ". $_POST["carPRICE"] .")";
-        if (!mysqli_query($connexion, $data_sell_contracts)) {
-            echo "Erreur d'insertion dans 'sell_contracts': " . mysqli_error($connexion) . "<br>";
+        if(isset($_SESSION["NAME"])){
+            $data_sell_contracts = "INSERT INTO sell_contracts (car_id, buyer_name, buyer_email, sale_date, sale_price) VALUES (". $_POST["carID"] .",'". $_SESSION["NAME"] ."', '". $_SESSION["EMAIL"] ."','". date("Y-m-d")."', ". $_POST["carPRICE"] .")";
+            if (!mysqli_query($connexion, $data_sell_contracts)) {
+                echo "Erreur d'insertion dans 'sell_contracts': " . mysqli_error($connexion) . "<br>";
+            }
+        }else{
+            header('location:Log_in.php');
         }
     }
 ?>

@@ -72,9 +72,9 @@
         ('BMW', 'Germany')";
     
     $data_cars = "INSERT INTO cars (model, brand_id, year, price, image) VALUES
-        ('Camry', 1, 2022, 25000.00, 'images/camry.jpg'),
-        ('Mustang', 2, 2021, 55000.00, 'images/mustang.jpg'),
-        ('X5', 3, 2023, 70000.00, 'images/x5.jpg')";
+        ('Camry', 1, 2022, 25000.00, 'images/camry2022.jpg'),
+        ('Mustang', 2, 2021, 55000.00, 'images/mustang2021.jpg'),
+        ('X5', 3, 2023, 70000.00, 'images/x52023.jpg')";
     
     $data_sell_contracts = "INSERT INTO sell_contracts (car_id, buyer_name, buyer_email, sale_date, sale_price) VALUES
         (1, 'John Doe', 'john.doe@example.com', '2024-10-15', 24000.00),

@@ -25,9 +25,25 @@
     $res = mysqli_query($connexion, $sql);
     if ($res) {
         $row = mysqli_fetch_assoc($res);
-        echo $row["name"] . " " . $row["model"];
+        echo "<div class='wrapper'>
+	<div class='outer'>
+		<div class='content animated fadeInLeft'>
+			<span class='bg animated fadeInDown'>".$row["name"]."</span>
+			<h1>".$row["model"]."</h1>
+			<p>yap yap yapuchinou about the car above , this will be filled by the database's 'description' column in the table 'cars'</p>
+			
+			<div class='button'>
+				<a href='#'>".$row['price']."</a><a class='cart-btn' href='#'><i class='cart-icon ion-bag'></i>ADD TO CART</a>
+			</div>
+			
+		</div>
+		<img src='".$row['image']."' width='300px' class='animated fadeInRight'>
+	</div>
+	<p class='footer'>".$row['image']."</p>
+</div>";
     }
 
+ 
 ?>
 
 </body>

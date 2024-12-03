@@ -31,19 +31,19 @@
 			<span class='bg animated fadeInDown'>".$row["name"]."</span>
 			<h1>".$row["model"]."</h1>
             <br>
+            <div class='desc'>
             <h3> Engine : ". $row["engine"] ."</h3>
             <h3> Horse power : ". $row["hp"] ."</h3>
-
+            </div>
 			<p>". $row["description"] ."</p>
-			
+			<span> Price :".$row['price']." $</span>
 			<div class='button'>
-				<a href='#'>".$row['price']."</a><a class='cart-btn' href='#'><i class='cart-icon ion-bag'></i>ADD TO CART</a>
+				 <a class='cart-btn' href='#'><i class='cart-icon ion-bag'></i>ADD TO CART</a>
 			</div>
 			
 		</div>
 		<img src='".$row['image']."' width='300px' class='animated fadeInRight'>
 	</div>
-	<p class='footer'>".$row['image']."</p>
 </div>";
     }
 

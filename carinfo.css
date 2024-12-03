@@ -20,6 +20,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  box-shadow: 15px 15px 15px 15px black;
 }
 
 img {
@@ -28,8 +29,8 @@ img {
   right: -20px;
   z-index: 0;
   animation-delay: 0.5s;
-  width: 50%;
-  height: 60%;
+  width: 80%;
+  height: fit-content;
 }
 
 .content {
@@ -42,40 +43,62 @@ img {
 
 h1 {
   color: #111;
+  text-align: center;
+  font-size: 100px;
+}
+h3{
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.desc{
+    background-color: #262626;
+    border-bottom: gold 3px solid;
+    padding: 20px;
+    color: #fff;
 }
 
 p {
-  width: 280px;
-  font-size: 13px;
+  width: 400px;
+  font-size: 30px;
   line-height: 1.4;
-  color: #aaa;
+  color: #000000;
   margin: 20px 0;
+  border-left: #000000 3px solid;
+  padding-left: 5px;
 }
 
 .bg {
   display: inline-block;
   color: #fff;
-  background: cornflowerblue;
-  padding: 5px 10px;
-  border-radius: 50px;
-  font-size: 0.7em;
+  background: rgb(0, 0, 0);
+  border-bottom: gold 3px solid;
+  padding: 6px 70px  6px 6px ;
+  margin: 1px;
+  border-radius: 0 50px 0 0;
+  font-size: 50px;
 }
 .button {
-  width: fit-content;
-  height: fit-content;
+  width: 50px;
+  height: 50px;
   margin-top: 10px;
 }
-
+span{
+    color: green;
+    font-size: 30px;
+    text-align: center;
+    align-items: center;
+}
 .button a {
-  display: inline-block;
+  display: block;
   overflow: hidden;
   position: relative;
-  font-size: 11px;
+  right: 0px;
+  font-size: 20px;
   color: #111;
-  text-decoration: none;
-  padding: 10px 15px;
+  padding:20px;
   border: 1px solid #aaa;
   font-weight: bold;
+  width: 200px;
 }
 
 .button a:after {
@@ -104,12 +127,12 @@ p {
 }
 
 .button a:nth-of-type(1) {
-  border-radius: 50px 0 0 50px;
+  border-radius:50px;
   border-right: none;
 }
 
 .button a:nth-of-type(2) {
-  border-radius: 0px 50px 50px 0;
+  border-radius:50px;
 }
 
 .cart-icon {

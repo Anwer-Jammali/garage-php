@@ -39,7 +39,7 @@
 <h1> Welcome to the Home Page!</h1>
 </center>
 <?php
-    $sql = "SELECT c.id ,name , model , price , image FROM cars as c JOIN brands as b ON(b.id=c.brand_id)";
+    $sql = "SELECT c.id ,name , model , price , image , engine , hp , description FROM cars as c JOIN brands as b ON(b.id=c.brand_id)";
     $result = mysqli_query($connexion, $sql);
 
     if (!$result) {
@@ -55,11 +55,14 @@
                         <form method="post">
                             <h2 class="card-title">' . htmlspecialchars($row['name']) . ' ' . htmlspecialchars($row['model']) . '</h2>
                             <p class="card-price">' . htmlspecialchars($row['price']) . '</p>
-                            <p class="card-description">This is a brief description of the card. It provides details about the content shown above.</p>
+                            <div class="flexi">
+                            <p class="atr"> Horse power :'.htmlspecialchars($row['hp']).'</p>
+                            <p class="atr"> Engine :'.htmlspecialchars($row['engine']).'</p>
                             <input type="hidden" name="carID" value="'.$row["id"].'">
                             <input type="hidden" name="carPRICE" value="'.$row["price"].'">
-                            <input type="submit" value="More" name="info">
-                            <input type="submit" value="BUY!!" name="buy">
+                            <input type="submit" value="More" name="info" class="sub">
+                            <input type="submit" value="BUY!!" name="buy" class="subuy">
+                            </div>
                         </form>
                         </div>
                     </div>';

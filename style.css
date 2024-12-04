@@ -116,3 +116,157 @@ body {
   cursor: not-allowed;
   opacity: 1;
 }
+
+/* General body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for service section */
+.service-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Service item styling */
+.service-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.service-item h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.service-item p {
+  color: #7f8c8d;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Additional styling for links, if any */
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .service-container {
+      padding: 15px;
+  }
+  
+  .service-item h2 {
+      font-size: 20px;
+  }
+
+  .service-item p {
+      font-size: 14px;
+  }
+}
+/* General about section styling */
+.about-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* About section heading */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Text content for the About Us paragraph */
+.about-container p {
+  color: #7f8c8d;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Styling for creator section */
+.creator-section {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Individual creator card styling */
+.creator-card {
+  background-color: #080101;
+  padding: 20px;
+  border-radius: 8px;
+  border-bottom: gold 3px solid;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.creator-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Creator image styling */
+.creator-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Creator name and role styling */
+.creator-card h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.creator-card p {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Mobile responsive styling */
+@media (max-width: 768px) {
+  .creator-section {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .creator-card {
+      width: 80%;
+      margin-bottom: 20px;
+  }
+}

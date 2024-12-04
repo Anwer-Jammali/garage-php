@@ -31,6 +31,12 @@
           if(isset($_POST["home"])){
             header("location:index.php");
           }
+          if(isset($_POST["contact"])){
+            header("location:contact.php");
+          }
+          if(isset($_POST["services"])){
+            header("location:services.php");
+          }
         ?>
       </form>
       <?php

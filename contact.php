@@ -25,11 +25,11 @@
 
             <div class="creator-card">
                 <img src="path_to_creator_image_2.jpg" alt="Creator 2" class="creator-image">
-                <h2>[Creator 2 Name]</h2>
-                <p>Class:</p>
-                <p>Email:</p>
-                <p>Github Account:</p>
-                <p>About: [Brief description about creator 2's background, role in the project, and experience]</p>
+                <h2>Adem Shili</h2>
+                <p>Class: DSI-2.3</p>
+                <p>Email:adem.alshili@gmail.com</p>
+                <p>Github Account:seniorlenoir</p>
+                <p>About: na9ra fel isetso  ¯\_(ツ)_/¯ </p>
             </div>
         </div>
     </div>

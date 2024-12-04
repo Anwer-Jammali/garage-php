@@ -1,0 +1,88 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form styling */
+.simple-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+/* Label styling */
+.simple-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input and textarea styling */
+.simple-form input[type="text"],
+.simple-form input[type="number"],
+.simple-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus state for inputs */
+.simple-form input[type="text"]:focus,
+.simple-form input[type="number"]:focus,
+.simple-form textarea:focus {
+  border-color: #27ae60; /* Green color for focus */
+  outline: none;
+}
+
+/* Button styling */
+.simple-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.simple-form button:hover {
+  background-color: #2ecc71; /* Lighter green on hover */
+}
+
+.simple-form button:active {
+  background-color: #218c4c; /* Darker green on click */
+}
+
+/* Styling for required input fields */
+.simple-form input[required],
+.simple-form textarea[required] {
+  background-color: #f9f9f9;
+}
+
+/* Additional spacing for the form */
+.simple-form input,
+.simple-form textarea {
+  margin-bottom: 20px;
+}

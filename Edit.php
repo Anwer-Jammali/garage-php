@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dashboard_style.css">
-    <title>Admin dashboard</title>
+    <title>Add Car</title>
 </head>
 <body>
     <?php
@@ -21,14 +21,29 @@
     ?>
         <form class="fixed-list" method="post">
             <input type="submit" name="home" value="Home">
-            <input type="submit" name="cars" value="NORMAL VIEW">
+            <input type="submit" name="dashboard" value="MOD VIEW">
         </form>
         <?php
             if(isset($_POST['home'])){
                 header('location:index.php');
             }
-            if(isset($_POST['cars'])){
-                header('location:Edit.php');
+            if(isset($_POST['dashboard'])){
+                header('location:dashboard.php');
+            }
+            if(isset($_POST['editAccount'])){
+                session_start();
+                $_SESSION["id"] = $_POST["id"];
+                header('location:editPages/editAccount.php');
+            }
+            if(isset($_POST['editBrand'])){
+                session_start();
+                $_SESSION["id"] = $_POST["id"];
+                header('location:editPages/editBrand.php');
+            }
+            if(isset($_POST['editCar'])){
+                session_start();
+                $_SESSION["id"] = $_POST["id"];
+                header('location:editPages/editCar.php');
             }
         ?>
     <section class="dashboard">
@@ -122,6 +137,7 @@
                         <th>Account ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Mod view</th>
                     </tr>";
             // Loop through and display each user
             while ($row = mysqli_fetch_assoc($result)) {
@@ -129,6 +145,12 @@
                         <td>" . htmlspecialchars($row['id']) . "</td>
                         <td>" . htmlspecialchars($row['Account_name']) . "</td>
                         <td>" . htmlspecialchars($row['Email']) . "</td>
+                        <td>
+                            <form method='post'>
+                                <input type='hidden' name='id' value='". $row['id'] ."'>
+                                <input type='submit' name='editAccount' value='edit'><input type='submit' name='deleteAccount' value='delete'>
+                            </form>        
+                        </td>
                       </tr>";
             }
             echo "</table>";
@@ -136,7 +158,16 @@
             // Display a friendly message if no users are found
             echo "<p>No users found.</p>";
         }
+        if(isset($_POST["deleteAccount"])){
+            $sql = "DELETE FROM Accounts WHERE id = '". $_POST['id'] ."'";
+            $result = mysqli_query($connexion, $sql);
+            if (!$result) {
+                // Display an error message if the query fails
+                echo "<p>Error executing query: " . mysqli_error($connexion) . "</p>";
+            }
+        }
     }
+
     ?>
     <div class="title">
         <i class="uil uil-clock-three"></i>
@@ -156,17 +187,32 @@
                         <th>Brand ID</th>
                         <th>Name</th>
                         <th>Country</th>
+                        <th>Mod view</th>
                     </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>
                         <td>" . htmlspecialchars($row['id']) . "</td>
                         <td>" . htmlspecialchars($row['name']) . "</td>
                         <td>" . htmlspecialchars($row['country']) . "</td>
+                        <td>
+                            <form method='post'>
+                                <input type='hidden' name='id' value='". $row['id'] ."'>
+                                <input type='submit' name='editBrand' value='edit'><input type='submit' name='deleteBrand' value='delete'>
+                            </form>        
+                        </td>
                       </tr>";
             }
             echo "</table>";
         } else {
             echo "<p>No brands found.</p>";
+        }
+        if(isset($_POST["deleteBrand"])){
+            $sql = "DELETE FROM Brands WHERE id = '". $_POST['id'] ."'";
+            $result = mysqli_query($connexion, $sql);
+            if (!$result) {
+                // Display an error message if the query fails
+                echo "<p>Error executing query: " . mysqli_error($connexion) . "</p>";
+            }
         }
     }
     ?>
@@ -189,6 +235,7 @@
                         <th>Model</th>
                         <th>Year</th>
                         <th>Price</th>
+                        <th>Mod view</th>
                     </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>
@@ -196,11 +243,25 @@
                         <td>" . htmlspecialchars($row['model']) . "</td>
                         <td>" . htmlspecialchars($row['year']) . "</td>
                         <td>$" . htmlspecialchars(number_format($row['price'], 2)) . "</td>
+                        <td>
+                            <form method='post'>
+                                <input type='hidden' name='id' value='". $row['id'] ."'>
+                                <input type='submit' name='editCar' value='edit'><input type='submit' name='deleteCar' value='delete'>
+                            </form>        
+                        </td>
                       </tr>";
             }
             echo "</table>";
         } else {
             echo "<p>No cars found.</p>";
+        }
+        if(isset($_POST["deleteCar"])){
+            $sql = "DELETE FROM Cars WHERE id = '". $_POST['id'] ."'";
+            $result = mysqli_query($connexion, $sql);
+            if (!$result) {
+                // Display an error message if the query fails
+                echo "<p>Error executing query: " . mysqli_error($connexion) . "</p>";
+            }
         }
     }
     ?>

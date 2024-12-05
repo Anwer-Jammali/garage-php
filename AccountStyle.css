@@ -1,0 +1,112 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+.account-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.update_button {
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+}
+
+.update_button:hover {
+  background-color: #45a049;
+}
+
+.delete_button {
+  background-color: #f44336;
+  color: white;
+  font-size: 16px;
+}
+
+.delete_button:hover {
+  background-color: #e53935;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Add some spacing between sections */
+.account-container h2 {
+  margin-top: 30px;
+}
+
+.account-container .form_input {
+  margin-top: 10px;
+}
+
+.account-container .update_button,
+.account-container .delete_button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}

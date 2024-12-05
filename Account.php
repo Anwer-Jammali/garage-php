@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account</title>
     <link rel="stylesheet" href="parts/navbarcss.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="AccountStyle.css">
 </head>
 <body>
     <?php include 'parts/navbar.php'; ?>
@@ -45,14 +45,23 @@ if (isset($_POST['update_account'])) {
     $new_name = mysqli_real_escape_string($connexion, $_POST['name']);
     $new_email = mysqli_real_escape_string($connexion, $_POST['email']);
     $new_password = mysqli_real_escape_string($connexion, $_POST['password']);
-
-    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-
-    $sql_update = "UPDATE Accounts SET Account_name = '$new_name', Email = '$new_email', Password = '$hashed_password' WHERE id = '$user_id'";
-    if (mysqli_query($connexion, $sql_update)) {
-        echo "Account updated successfully!";
-    } else {
-        echo "Error updating account: " . mysqli_error($connexion);
+    header("location:carinfo.php");
+    if(empty($new_password)){
+        $sql_update = "UPDATE Accounts SET Account_name = '$new_name', Email = '$new_email' WHERE id = '$user_id'";
+        if (mysqli_query($connexion, $sql_update)) {
+            echo "Account updated successfully!";
+        } else {
+            echo "Error updating account: " . mysqli_error($connexion);
+        }
+    }else{
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+        
+        $sql_update = "UPDATE Accounts SET Account_name = '$new_name', Email = '$new_email', Password = '$hashed_password' WHERE id = '$user_id'";
+        if (mysqli_query($connexion, $sql_update)) {
+            echo "Account updated successfully!";
+        } else {
+            echo "Error updating account: " . mysqli_error($connexion);
+        }
     }
 }
 
@@ -79,18 +88,28 @@ if (isset($_POST['delete_account'])) {
                     if (!$res) {
                         echo "<p>Error executing query: " . mysqli_error($connexion) . "</p>";
                     }
-                     if (mysqli_num_rows($res) > 0){
-                        echo "<table border='5'><thead><tr><th>Car model </th><th>sale date</th><th>price</th></tr></thead><tbody>";
-                        while ($row = mysqli_fetch_assoc($res)){
+                    if (mysqli_num_rows($res) > 0) {
+                        echo "<table>
+                                <thead>
+                                    <tr>
+                                        <th>Car Model</th>
+                                        <th>Sale Date</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
+                        
+                        while ($row = mysqli_fetch_assoc($res)) {
                             echo "<tr>
-                            <td>".htmlspecialchars($row['model'])."</td>
-                            <td>".htmlspecialchars($row['sale_date'])."</td>
-                            <td>".htmlspecialchars($row['sale_price'])."</td>
-                        </tr></tbody>
-                        </table>";
+                                    <td>" . htmlspecialchars($row['model']) . "</td>
+                                    <td>" . htmlspecialchars($row['sale_date']) . "</td>
+                                    <td>" . htmlspecialchars($row['sale_price']) . "</td>
+                                  </tr>";
                         }
-                    } 
-                    else{
+                    
+                        echo "</tbody>
+                              </table>";
+                    } else {
                         echo "<p>You have not made any purchases yet.</p>";
                     }
             
@@ -98,10 +117,10 @@ if (isset($_POST['delete_account'])) {
         <h2>Edit Your Account</h2>
         <form method="POST">
             
-            Name:<input type="text" name="name" value="<?php echo htmlspecialchars($user['Account_name']); ?>"><br><br>
-            Email:<input type="email"name="email" value="<?php echo htmlspecialchars($user['Email']); ?>"><br><br>
-            New Password:<input type="password" id="password" name="password"><br><br>
-            <button type="submit" name="update">Update Account</button>
+            Name:<input type="text" name="name" class="form_input" value="<?php echo htmlspecialchars($user['Account_name']); ?>"><br><br>
+            Email:<input type="email"name="email" class="form_input" value="<?php echo htmlspecialchars($user['Email']); ?>"><br><br>
+            New Password:<input type="password" id="password" name="password" class="form_input"><br><br>
+            <button type="submit" name="update" class="update_button">Update Account</button>
         </form>
         <?php
             if(isset($_POST["update"])){
@@ -120,7 +139,7 @@ if (isset($_POST['delete_account'])) {
     
         <h2>Delete Your Account</h2>
         <form method="POST">
-            <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
+            <button type="submit" name="delete" class="delete_button" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</button>
         </form>
         <?php
             if(isset($_POST["delete"])){

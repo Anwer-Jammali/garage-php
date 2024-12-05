@@ -40,32 +40,7 @@ if (!$user) {
     exit();
 }
 }
-// Handle account updates
-if (isset($_POST['update_account'])) {
-    $new_name = mysqli_real_escape_string($connexion, $_POST['name']);
-    $new_email = mysqli_real_escape_string($connexion, $_POST['email']);
-    $new_password = mysqli_real_escape_string($connexion, $_POST['password']);
-    header("location:carinfo.php");
-    if(empty($new_password)){
-        $sql_update = "UPDATE Accounts SET Account_name = '$new_name', Email = '$new_email' WHERE id = '$user_id'";
-        if (mysqli_query($connexion, $sql_update)) {
-            echo "Account updated successfully!";
-        } else {
-            echo "Error updating account: " . mysqli_error($connexion);
-        }
-    }else{
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-        
-        $sql_update = "UPDATE Accounts SET Account_name = '$new_name', Email = '$new_email', Password = '$hashed_password' WHERE id = '$user_id'";
-        if (mysqli_query($connexion, $sql_update)) {
-            echo "Account updated successfully!";
-        } else {
-            echo "Error updating account: " . mysqli_error($connexion);
-        }
-    }
-}
 
-// Handle account deletion
 if (isset($_POST['delete_account'])) {
     $sql_delete = "DELETE FROM Accounts WHERE id = '$user_id'";
     if (mysqli_query($connexion, $sql_delete)) {
@@ -115,25 +90,34 @@ if (isset($_POST['delete_account'])) {
             
             ?>
         <h2>Edit Your Account</h2>
-        <form method="POST">
-            
+        <form method="POST">   
             Name:<input type="text" name="name" class="form_input" value="<?php echo htmlspecialchars($user['Account_name']); ?>"><br><br>
             Email:<input type="email"name="email" class="form_input" value="<?php echo htmlspecialchars($user['Email']); ?>"><br><br>
             New Password:<input type="password" id="password" name="password" class="form_input"><br><br>
             <button type="submit" name="update" class="update_button">Update Account</button>
         </form>
         <?php
+        
             if(isset($_POST["update"])){
-                $sql = "UPDATE accounts  SET Account_name= '". $_POST["name"] ."' , Email= '". $_POST["email"] ."', Account_Password= '". $_POST["password"]."' WHERE id =" . $_SESSION["ID"] . "";
-                $res = mysqli_query($connexion, $sql);
-                if($res){
-                    echo "<h3>Your changes have been made successfully !</h3>";
-                    header("location:Account.php");
+                if(isset($_POST['password'])){
+                    $sql = "UPDATE accounts  SET Account_name= '". $_POST["name"] ."' , Email= '". $_POST["email"] ."', Account_Password= '". $_POST["password"]."' WHERE id =" . $_SESSION["ID"] . "";
+                    $res = mysqli_query($connexion, $sql);
+                    if($res){
+                        echo "<h3>Your changes have been made successfully !</h3>";
+                        header("location:Account.php");
                 }
+                }else if(!isset($_POST['password'])){
+                    $sql = "UPDATE accounts  SET Account_name= '". $_POST["name"] ."' , Email= '". $_POST["email"] ."' WHERE id =" . $_SESSION["ID"] . "";
+                    $res = mysqli_query($connexion, $sql);
+                    if($res){
+                        echo "<h3>Your changes have been made successfully !</h3>";
+                        header("location:Account.php");
+                    }
             }
             if (!$connexion) {
                 die("Connexion échouée : " . mysqli_connect_error());
             }
+        }
         ?>
 
     

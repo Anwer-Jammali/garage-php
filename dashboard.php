@@ -22,16 +22,12 @@
         <form class="fixed-list" method="post">
             <input type="submit" name="home" value="Home">
             <input type="submit" name="cars" value="NORMAL VIEW">
-            <input type="submit" name="Add" value="Add car">
         </form>
         <?php
             if(isset($_POST['home'])){
                 header('location:index.php');
             }
             if(isset($_POST['cars'])){
-                header('location:Edit.php');
-            }
-            if(isset($_POST['add'])){
                 header('location:Edit.php');
             }
 

@@ -60,13 +60,16 @@
         $sql="insert into Accounts (Account_name,Email,Account_Password,Account_Role) values ('$Sname','$Semail','$Spw','$role')";
         if(mysqli_query($connexion,$sql)){
             echo "signup successfull !";
-            // 3adih lel dashboard or something
-            //session_start();
-            //header("");
+            $sql="SELECT id from Accounts where Email='$Semail' and Account_Password='$Spw' and Account_Role='$role'";
+            $res = mysqli_query($connexion, $sql);    
+            $row = mysqli_fetch_assoc($res);
+            if(mysqli_num_rows($res) == 1) {
             session_start();
+            $_SESSION['ID']=$row['id'];
             $_SESSION['ROLE'] = $role;
             $_SESSION['EMAIL'] = $Semail;
             $_SESSION['NAME'] = $Sname;
+            }
             header('location:index.php');
         }else {
             echo "<h3 style='color:red;'>error".mysqli_error($connexion)."</h3>";
@@ -76,7 +79,7 @@
     $lemail=$_POST['l_email']??'';
     $lpw=$_POST['l_pw']??'';
     if(isset($_POST['l_btn'])){
-        $sql="SELECT account_name , account_role from Accounts where Email='$lemail' and Account_Password='$lpw'";
+        $sql="SELECT id , account_name , account_role from Accounts where Email='$lemail' and Account_Password='$lpw'";
         $res = mysqli_query($connexion, $sql);
         if(mysqli_num_rows($res) == 1) {
             // 3adih lel dashboard or something
@@ -84,6 +87,7 @@
             //header("");
             session_start();
             $row = mysqli_fetch_assoc($res);
+            $_SESSION['ID']=$row['id'];
             $_SESSION["NAME"] = $row['account_name']; // Retrieve account_name
             $_SESSION["ROLE"] = $row['account_role']; // Retrieve account_role
             $_SESSION["EMAIL"] = $lemail;

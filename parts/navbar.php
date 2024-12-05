@@ -24,6 +24,9 @@
               }
             }else{
               echo "<input type='submit' name='Acc_info' value='My Account'>";
+              if(isset($_POST['Acc_info'])){
+                header('location:Account.php');
+              }
             }
           } else {
               echo "<input type='submit' name='log_in' value='Log in'>";

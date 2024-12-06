@@ -177,7 +177,7 @@
     </div>
     <?php
     // Query to fetch all cars
-    $sql = "SELECT id, model, year, price FROM cars";
+    $sql = "SELECT c.id, model, name , engine , hp , year, price FROM cars c JOIN brands b ON(c.brand_id=b.id)";
     $result = mysqli_query($connexion, $sql);
 
     if (!$result) {
@@ -188,15 +188,28 @@
                     <tr>
                         <th>Car ID</th>
                         <th>Model</th>
+                        <th>Brand Name</th>
+                        <th>Engine</th>
+                        <th>Hores Power</th>
                         <th>Year</th>
                         <th>Price</th>
+                        <th>Mod view</th>
                     </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>
                         <td>" . htmlspecialchars($row['id']) . "</td>
                         <td>" . htmlspecialchars($row['model']) . "</td>
+                        <td>" . htmlspecialchars($row['name']) . "</td>
+                        <td>" . htmlspecialchars($row['engine']) . "</td>
+                        <td>" . htmlspecialchars($row['hp']) . "</td>
                         <td>" . htmlspecialchars($row['year']) . "</td>
                         <td>$" . htmlspecialchars(number_format($row['price'], 2)) . "</td>
+                        <td>
+                            <form method='post'>
+                                <input type='hidden' name='id' value='". $row['id'] ."'>
+                                <input type='submit' name='editCar' value='edit'><input type='submit' name='deleteCar' value='delete'>
+                            </form>        
+                        </td>
                       </tr>";
             }
             echo "</table>";

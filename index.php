@@ -41,7 +41,7 @@
     }
 
     
-    $results_per_page = 2; 
+    $results_per_page = 8; 
     $sql_total = "SELECT COUNT(*) AS total FROM cars"; 
     $result_total = mysqli_query($connexion, $sql_total);
     $row_total = mysqli_fetch_assoc($result_total);

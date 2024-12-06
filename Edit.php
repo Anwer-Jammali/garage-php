@@ -206,6 +206,23 @@
         } else {
             echo "<p>No brands found.</p>";
         }
+
+        echo'<br><br>
+            <form method="post">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="country" placeholder="country">
+            <input type="submit" value="Add Brand" name="addbrand">
+            </form>';
+        
+
+        if(isset($_POST["addbrand"])){
+            $sql="INSERT INTO brands (name, country) VALUES ('".$_POST["name"]."', '".$_POST["country"]."')";
+            if (mysqli_query($connexion, $sql)) {
+                echo "Données insérées dans 'brands' avec succès.<br>";
+            } else {
+                echo "Erreur d'insertion dans 'brands': " . mysqli_error($connexion) . "<br>";
+            }
+        }
         if(isset($_POST["deleteBrand"])){
             $sql = "DELETE FROM Brands WHERE id = '". $_POST['id'] ."'";
             $result = mysqli_query($connexion, $sql);
@@ -222,7 +239,7 @@
     </div>
     <?php
     // Query to fetch all cars
-    $sql = "SELECT id, model, year, price FROM cars";
+    $sql = "SELECT c.id, model, name , engine , hp , year, price FROM cars c JOIN brands b ON(c.brand_id=b.id)";
     $result = mysqli_query($connexion, $sql);
 
     if (!$result) {
@@ -233,6 +250,9 @@
                     <tr>
                         <th>Car ID</th>
                         <th>Model</th>
+                        <th>Brand Name</th>
+                        <th>Engine</th>
+                        <th>Hores Power</th>
                         <th>Year</th>
                         <th>Price</th>
                         <th>Mod view</th>
@@ -241,6 +261,9 @@
                 echo "<tr>
                         <td>" . htmlspecialchars($row['id']) . "</td>
                         <td>" . htmlspecialchars($row['model']) . "</td>
+                        <td>" . htmlspecialchars($row['name']) . "</td>
+                        <td>" . htmlspecialchars($row['engine']) . "</td>
+                        <td>" . htmlspecialchars($row['hp']) . "</td>
                         <td>" . htmlspecialchars($row['year']) . "</td>
                         <td>$" . htmlspecialchars(number_format($row['price'], 2)) . "</td>
                         <td>
@@ -255,6 +278,45 @@
         } else {
             echo "<p>No cars found.</p>";
         }
+        $sql = "SELECT id ,name FROM  brands";
+    $result = mysqli_query($connexion, $sql);
+
+    if (!$result) {
+        echo "<p>Error executing query: " . mysqli_error($connexion) . "</p>";
+    } else {
+        if (mysqli_num_rows($result) > 0) {
+            echo'<br><br>
+            <form method="post">
+            <input type="text" name="model" placeholder="model">
+            <select name="brand" placeholder="brand">';
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo'<option value="'.$row['id'].'">'. htmlspecialchars($row['name']) .'</option>';
+            }
+            echo'</select>
+            <input type="text" name="engine" placeholder="engine">
+            <input type="number" name="hp" placeholder="hp">
+            <input type="number" name="year" placeholder="year">
+            <input type="number" name="price" placeholder="price">
+            <input type="file" name="image" accept="image/*" required />
+            <input type="submit" value="Add Car" name="addcar">
+            </form>';
+        }
+    } 
+
+    if(isset($_POST["addcar"])){
+        $fileTmpPath = "test";
+        $fileName = $_POST["model"] . $_POST["year"];
+        $uploadDir = "images";
+        move_uploaded_file($fileTmpPath, $uploadDir . $fileName);
+        $sql="INSERT INTO cars (model, brand_id,engine,hp, year, price) VALUES ('". $_POST["model"] ."',". $_POST["brand"] .",'". $_POST["engine"] ."',".$_POST["hp"].",".$_POST["year"].",".$_POST["price"].")";
+        if (mysqli_query($connexion, $sql)) {
+            echo "Données insérées dans 'cars' avec succès.<br>";
+        } else {
+            echo "Erreur d'insertion dans 'cars': " . mysqli_error($connexion) . "<br>";
+        }
+    }
+        
+
         if(isset($_POST["deleteCar"])){
             $sql = "DELETE FROM Cars WHERE id = '". $_POST['id'] ."'";
             $result = mysqli_query($connexion, $sql);
@@ -265,10 +327,12 @@
         }
     }
     ?>
+    
     <div class="title">
         <i class="uil uil-clock-three"></i>
         <span class="text">All Sell Contracts</span>
     </div>
+    
     <?php
     // Query to fetch all sell contracts
     $sql = "SELECT id, car_id, buyer_name, sale_date, sale_price FROM sell_contracts";

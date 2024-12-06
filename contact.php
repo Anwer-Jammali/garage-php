@@ -16,11 +16,11 @@
         <div class="creator-section">
             <div class="creator-card">
                 <img src="path_to_creator_image_1.jpg" alt="Creator 1" class="creator-image">
-                <h2>[Creator 1 Name]</h2>
-                <p>Class:</p>
-                <p>Email:</p>
-                <p>Github Account:</p>
-                <p>About: [Brief description about creator 1's background, role in the project, and experience]</p>
+                <h2>Anwer Jammali</h2>
+                <p>Class: DSI2.3</p>
+                <p>Email: anwer.jammali2004@gmail.com</p>
+                <p>Github Account: lordmaster099</p>
+                <p>About: i'm just a boy</p>
             </div>
 
             <div class="creator-card">

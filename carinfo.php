@@ -21,12 +21,25 @@
         die("Connexion échouée : " . mysqli_connect_error());
     }
     
+    if (isset($_POST["buy"])) {
+        if (isset($_SESSION["NAME"])) {
+            $data_sell_contracts = "INSERT INTO sell_contracts (car_id, buyer_name, buyer_email, sale_date, sale_price) VALUES (" . $_POST["carID"] . ",'" . $_SESSION["NAME"] . "','" . $_SESSION["EMAIL"] . "','" . date("Y-m-d") . "'," . $_POST["carPRICE"] . ")";
+            if (!mysqli_query($connexion, $data_sell_contracts)) {
+                echo "Erreur d'insertion dans 'sell_contracts': " . mysqli_error($connexion) . "<br>";
+            }
+        } else {
+            header('location:Log_in.php');
+        }
+    }
+
+
     $sql = "SELECT c.id ,name , model , price , image , engine , hp , description FROM cars as c JOIN brands as b ON(b.id=c.brand_id) WHERE c.id ='" . $_SESSION["carID"] . "'";
     $res = mysqli_query($connexion, $sql);
     if ($res) {
         $row = mysqli_fetch_assoc($res);
         echo "<div class='wrapper'>
 	<div class='outer'>
+    <form  method='post'>
 		<div class='content animated fadeInLeft'>
 			<span class='bg animated fadeInDown'>".$row["name"]."</span>
 			<h1>".$row["model"]."</h1>
@@ -37,9 +50,9 @@
             </div>
 			<p>". $row["description"] ."</p>
 			<span> Price :".$row['price']." $</span>
-			<div class='button'>
-				 <a class='cart-btn' href='#'><i class='cart-icon ion-bag'></i>ADD TO CART</a>
-			</div>
+            <input type='hidden' name='carPRICE' value='". $row["price"] ."'><input type='hidden' name='carID' value='". $row["id"] ."'>
+			<input type='submit' name='buy' value='buy' class='buy'>
+	</form>
 			
 		</div>
 		<img src='".$row['image']."' width='300px' class='animated fadeInRight'>
@@ -49,6 +62,7 @@
 
  
 ?>
+
 
 </body>
 </html>

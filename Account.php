@@ -142,3 +142,5 @@ if (isset($_POST['delete_account'])) {
     </div>
 </body>
 </html>
+
+<!-- end -->
